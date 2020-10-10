@@ -21,8 +21,8 @@ class Trie:
         '''
         curr = self.root
         for ch in word:
-            #if ch not in curr.children:
-                #curr.children[ch] = TrieNode()
+            if ch not in curr.children:
+                curr.children[ch] = TrieNode()
             curr = curr.children[ch]
         curr.is_end = True
 

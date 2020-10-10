@@ -1,4 +1,4 @@
-## Divide and Conquer
+## Divide and Conquer, Recursion
 ## Time Complexity: O(N * 2^N)
 ## Space Complexity: O(N * 2^N)
 
@@ -9,6 +9,7 @@ class Solution:
         :rtype: List[int]
         '''
         result = []
+        # base case
         if input.isdigit():
             result.append(int(input))
         for i, s in enumerate(input):
@@ -35,16 +36,18 @@ class Solution:
 class Solution:
     def diffWaysToCompute(self, input):
         return self.diffWaysToComputeRec(input, {})
-    
+
+
     def diffWaysToComputeRec(self, input, memo):
         '''
         :type input: str
         :rtype: List[int]
         '''
         result = []
+        # base case
         if input.isdigit():
             result.append(int(input))
-
+        # check if we have already evaluated this sub-expression before
         if input in memo:
             return memo[input]
 
@@ -56,7 +59,10 @@ class Solution:
                 for left in left_vals:
                     for right in right_vals:
                         result.append(self.calculate(left, right, s))
+        # cache the result 
+        memo[input] = result
         return result
+
 
     def calculate(self, a, b, operator):
         if operator == '+':

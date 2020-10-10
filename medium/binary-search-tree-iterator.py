@@ -85,3 +85,34 @@ class BSTIterator:
         :rtype: bool
         '''
         return len(self.stack) > 0
+
+
+## Similar to Solution 2
+class BSTIterator:
+    def __init__(self, root):
+        '''
+        :type root: TreeNode
+        '''
+        self.stack = []
+        while root:
+            self.stack.append(root)
+            root = root.left
+
+    def next(self):
+        '''
+        Return the next smallest number.
+        :rtype: int
+        '''
+        node = self.stack.pop()
+        curr = node.right
+        while curr:
+            self.stack.append(curr)
+            curr = curr.left
+        return node.val
+
+    def hasNext(self):
+        '''
+        Return whether we have a next smallest number.
+        :rtype: bool
+        '''
+        return len(self.stack) > 0

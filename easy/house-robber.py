@@ -10,7 +10,6 @@
 ## f(1) = max(nums[0], nums[1])
 ## State transition:
 ## f(k) = max(num[k]+f(k-2), f(k-1))
-
 class Solution:
     def rob(self, nums):
         '''
@@ -31,7 +30,6 @@ class Solution:
 ## Solution 2 - Bottom up DP with constant space
 ## Time Complexity: O(n)
 ## Space Complexity: O(1)
-
 class Solution:
     def rob(self, nums):
         '''

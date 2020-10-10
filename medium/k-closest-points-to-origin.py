@@ -1,6 +1,9 @@
 ## Time Complexity: O(NlogK)
 ## Space Complexity: O(K)
 
+from heapq import *
+
+## Approach 1 - Succinct code, faster
 class Solution:
     def distance(self, point):
         # ignoring sqrt to calculate the distance
@@ -22,3 +25,50 @@ class Solution:
         while max_heap:
             res.append(heappop(max_heap)[1])
         return res
+
+
+## Approach 2 - Define a Point class
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def distance_from_origin(self):
+        # for comparison we ignore the sqrt part
+        return self.x ** 2 + self.y ** 2
+
+    def __lt__(self, other):
+        return self.distance_from_origin() < other.distance_from_origin()
+
+    def __eq__(self, other):
+        return self.distance_from_origin() == other.distance_from_origin()
+
+
+class Solution:
+    def kClosest(self, points, K):
+        '''
+        :type points: List[List[int]]
+        :type K: int
+        :rtype: List[List[int]]
+        '''
+        max_heap = []
+        for p in points:
+            point = Point(p[0], p[1])
+            dist = point.distance_from_origin()
+            heappush(max_heap, (-dist, point))
+            if len(max_heap) > K:
+                heappop(max_heap)
+
+        res = []
+        while max_heap:
+            pt = heappop(max_heap)[1]
+            res.append([pt.x, pt.y])
+        return res
+
+
+if __name__ == '__main__':
+    points1 = [[1,3],[-2,2]]
+    points2 = [[3,3],[5,-1],[-2,4]]
+    solution = Solution()
+    print(solution.kClosest(points1, 1))
+    print(solution.kClosest(points2, 2))

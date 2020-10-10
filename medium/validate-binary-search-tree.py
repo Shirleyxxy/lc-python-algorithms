@@ -57,7 +57,7 @@ class Solution:
 
 
 ## Solution 3 - Recursion
-## Time Complexity: O(N)
+## Time Complexity: O(N) - we visit each node exactly once.
 ## Space Complexity: O(N)
 class Solution:
     def isValidBST(self, root):
@@ -72,3 +72,25 @@ class Solution:
         if not lo < node.val < hi:
             return False
         return self.isValidBSTFrom(node.left, lo, node.val) and self.isValidBSTFrom(node.right, node.val, hi)
+
+
+## Solution 4
+## Time Complexity: O(N)
+## Space Complexity: O(N)
+class Solution:
+    def isValidBST(self, root):
+        self.isBST = True
+        self.prev = float('-inf')
+        self.inorder(root)
+        return self.isBST
+
+    def inorder(self, node):
+        if not node or not self.isBST:
+            return
+        self.inorder(node.left)
+        # stop the traversal if already out of order
+        if node.val <= self.prev:
+            self.isBST = False
+            return
+        self.prev = node.val
+        self.inorder(node.right)

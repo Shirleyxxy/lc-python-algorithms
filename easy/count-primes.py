@@ -1,5 +1,6 @@
 ## straightforward but time limit exceeded
-## Time complexity: O(N*N)
+## sequentially test each candidate number
+## Time Complexity: O(N^2)
 
 class Solution:
     def countPrimes(self, n):
@@ -14,11 +15,13 @@ class Solution:
                 count += 1
         return count
 
+
     def isPrime(self, n):
         '''
         Checks if n is a prime number.
         :type n: int
         :rtype: True/False
+        O(n).
         '''
         if n <= 1:
             return False
@@ -27,9 +30,11 @@ class Solution:
                 return False
         return True
 
-## better solution
-## https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
 
+
+## https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
+## A common optimization: start enumerating the multiples of each prime i from i^2.
+## Time Complexity: O(NloglogN)
 class Solution:
     def countPrimes(self, n):
         '''
@@ -37,17 +42,11 @@ class Solution:
         :type n: int
         :rtype: int
         '''
-        # initialize a boolean array
-        isPrime = [True] * n
-        for i in range(2, n):
-            if i * i >= n:
-                break
-            if not isPrime[i]:
-                continue
-            for j in range(i * i, n, i):
-                isPrime[j] = False
-        count = 0
-        for i in range(2, n):
-            if isPrime[i]:
-                count += 1
-        return count
+        if n < 2:
+            return 0
+        primes = [1] * n
+        primes[0] = primes[1] = 0
+        for i in range(2, int(n**0.5)+1):
+            if primes[i] == 1:
+                primes[i*i:n:i] = [0] * len(primes[i*i:n:i])
+        return sum(primes)

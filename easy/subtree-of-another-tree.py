@@ -15,14 +15,15 @@ class Solution:
         :type s: TreeNode
         :type t: TreeNode
         :rtype: bool
+        Check if s and t are equal, or if t is a subtree of a child node of s.
         '''
-        if self.isMatch(s, t): return True
         if not s: return False
+        if self.isMatch(s, t): return True
         return self.isSubtree(s.left, t) or self.isSubtree(s.right, t)
 
     def isMatch(self, s, t):
         '''
-        Check the equality of the two trees.
+        Recursive function: check the equality of the two trees.
         '''
         if not (s and t):
             return s is t

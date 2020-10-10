@@ -6,6 +6,37 @@ class Node:
         self.next = next
         self.random = random
 """
+
+#############
+## Updated on Sep-19-2020
+## Iterative solution
+## Time Complexity: O(N)
+## Space Complexity: O(N)
+
+class Solution:
+    def copyRandomList(self, head):
+        '''
+        :type head: Node
+        :rtype: Node
+
+        Mapping with old Nodes as keys and new Nodes as values.
+        We create node's next and random as we iterate through the list from head to tail.
+        defaultdict() is an efficient way of handling missing keys
+        '''
+        mapping = collections.defaultdict(lambda: Node(0, None, None))
+        mapping[None] = None
+
+        old_node = head
+        while old_node:
+            mapping[old_node].val = old_node.val
+            mapping[old_node].next = mapping[old_node.next]
+            mapping[old_node].random = mapping[old_node.random]
+            old_node = old_node.next
+
+        return mapping[head]
+
+
+
 ## Recursive solution
 ## Time Complexity: O(N)
 ## Space Complexity: O(N)
@@ -30,7 +61,6 @@ class Solution:
         visited = {}
         return self.dfs(head, visited)
 
-
     def dfs(self, node, d):
         if not node: return None
         if node in d:
@@ -40,6 +70,7 @@ class Solution:
         clone.next = self.dfs(node.next, d)
         clone.random = self.dfs(node.random, d)
         return clone
+
 
 #############
 class Solution:
@@ -64,6 +95,7 @@ class Solution:
         node.next = self.copyRandomList(head.next)
         node.random = self.copyRandomList(head.random)
         return node
+
 
 
 ## Iterative solution

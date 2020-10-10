@@ -54,12 +54,12 @@ class LRUCache(OrderedDict):
             self.popitem(last = False)
 
 
+
 ## Solution 2: Dictionary + DoubleLinkedList
 ## There are pseudo head and pseudo tail to mark the boundary, so that we don't
 ## need to check the null node during the update.
 ## Time Complexity: O(1) both for put & get
 ## Space Complexity: O(capacity)
-
 
 class DoubleLinkedListNode():
     def __init__(self, key, val):

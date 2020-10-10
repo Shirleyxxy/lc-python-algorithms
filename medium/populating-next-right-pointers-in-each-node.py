@@ -11,7 +11,6 @@ class Node:
 ## Solution 1 - Level order traversal (BFS)
 ## Time Complexity: O(N)
 ## Space Complexity: O(N)
-from collections import deque
 
 class Solution:
     def connect(self, root):
@@ -20,9 +19,7 @@ class Solution:
         :rtype: Node
         '''
         if not root: return root
-
-        queue = deque()
-        queue.append(root)
+        queue = collections.deque([root])
         # Outer while loop which iterates over each level
         while queue:
             prev_node, level_size = None, len(queue)

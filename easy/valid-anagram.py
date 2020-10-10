@@ -67,6 +67,7 @@ class Solution:
         return Counter(s) == Counter(t)
 
 
+
 ## Solution 3: Hash Table (using 1 dictionary)
 ## Use this solution for interviews
 ## Time Complexity: O(N)
