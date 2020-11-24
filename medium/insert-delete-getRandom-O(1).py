@@ -2,8 +2,6 @@
 ## Time Complexity: O(1)
 ## Space Complexity: O(N)
 
-import random
-
 class RandomizedSet:
     def __init__(self):
         '''
@@ -32,8 +30,10 @@ class RandomizedSet:
         :rtype: bool
         '''
         if val in self.d:
+            # swap the element to delete with the last one
             idx, last = self.d[val], self.vals[-1]
             self.vals[idx], self.d[last] = last, idx
+            # pop the last element out
             self.vals.pop()
             del self.d[val]
             return True
@@ -45,4 +45,4 @@ class RandomizedSet:
         Get a random element from the set.
         :rtype: int
         '''
-        return choice(self.vals)
+        return random.choice(self.vals)

@@ -25,6 +25,23 @@ class Solution:
         if not curr_node: return 0
         left = self.dfs(curr_node.left)
         right = self.dfs(curr_node.right)
-        # update the diameter along the way 
+        # update the diameter along the way
         self.diameter = max(self.diameter, left + right)
         return max(left, right) + 1
+
+
+class Solution:
+    def diameterOfBinaryTree(self, root):
+        '''
+        :type root: TreeNode
+        :rtype: int
+        '''
+        self.diameter = 0
+        def dfs(node):
+            if not node: return 0
+            left = dfs(node.left)
+            right = dfs(node.right)
+            self.diameter = max(self.diameter, left + right)
+            return 1 + max(left, right)
+        dfs(root)
+        return self.diameter

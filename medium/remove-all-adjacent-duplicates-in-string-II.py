@@ -11,8 +11,12 @@ class Solution:
         stack = []
         for ch in s:
             if not stack or stack[-1][0] != ch:
+                # need to use list
+                # tuple object does not support item assignment
                 stack.append([ch, 1])
+            # if the current character is the same as the one before
             else:
+                # increment the count on the top of the stack
                 stack[-1][1] += 1
                 if stack[-1][1] == k:
                     stack.pop()

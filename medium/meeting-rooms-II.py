@@ -25,4 +25,5 @@ class Solution:
                 # pop, then push the next meeting that
                 # can use the previously allocated room
                 heapreplace(min_heap, interval[1])
+
         return len(min_heap)

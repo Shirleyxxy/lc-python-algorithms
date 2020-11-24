@@ -16,7 +16,6 @@ class Node:
 ## Time Complexity: O(N) - DFS traverses each node once and only once
 ## Space Complexity: O(N) in the worst case - nodes are chained with each other
 ## only with the child pointers
-
 class Solution:
     def flatten(self, head):
         '''
@@ -53,8 +52,7 @@ class Solution:
 
 ## Solution 2 - Preorder DFS using stack
 ## Time Complexity: O(N)
-## Space Complexity: O(N)
-
+## Space Complexity: O(N) additional space
 class Solution:
     def flatten(self, head):
         '''
@@ -85,7 +83,6 @@ class Solution:
 ## Solution 3 - Preorder DFS using stack & Optimized space
 ## Time Complexity: O(N)
 ## Space Complexity: O(logN) on average, O(N) in the worst case
-
 class Solution:
     def flatten(self, head):
         '''

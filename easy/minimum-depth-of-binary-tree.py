@@ -1,6 +1,3 @@
-## Time Complexity: O(N)
-## Space Complexity: O(N)
-
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
@@ -8,8 +5,9 @@
 #         self.left = left
 #         self.right = right
 
-from collections import deque
-
+## Solution 1 - Recursion
+## Time Complexity: O(N)
+## Space Complexity: O(N) in the worst case; O(logN) in the best case
 class Solution:
     def minDepth(self, root):
         '''
@@ -17,18 +15,30 @@ class Solution:
         :rtype: int
         '''
         if not root: return 0
+        if not root.left and root.right:
+            return 1 + self.minDepth(root.right)
+        if not root.right and root.left:
+            return 1 + self.minDepth(root.left)
+        return 1 + min(self.minDepth(root.left), self.minDepth(root.right))
 
-        queue = deque()
-        queue.append(root)
-        min_depth = 0
+
+## Solution 2 - Iteration
+## Time Complexity: O(N)
+## Space Complexity: O(N)
+from collections import deque
+class Solution:
+    def minDepth(self, root):
+        '''
+        :type root: TreeNode
+        :rtype: int
+        '''
+        if not root: return 0
+        queue = deque([(root, 1)])
         while queue:
-            min_depth += 1
-            level_size = len(queue)
-            for _ in range(level_size):
-                curr_node = queue.popleft()
-                if not curr_node.left and not curr_node.right:
-                    return min_depth
-                if curr_node.left:
-                    queue.append(curr_node.left)
-                if curr_node.right:
-                    queue.append(curr_node.right)
+            node, level = queue.popleft()
+            if node:
+                if not node.left and not node.right:
+                    return level
+                else:
+                    queue.append((node.left, level+1))
+                    queue.append((node.right, level+1))

@@ -21,6 +21,7 @@ class Solution:
             # sum of 3 positive numbers will always be greater than 0 --> terminate the loop
             if nums[i] > 0: break
             # skip the same target element to avoid duplicate triplets
+            # repeating values are next to each other in a sorted array
             if i > 0 and nums[i] == nums[i-1]: continue
             # from here, it's a 2 sum problem
             left, right = i+1, len(nums)-1

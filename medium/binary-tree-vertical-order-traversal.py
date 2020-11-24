@@ -12,8 +12,6 @@
 #         self.left = left
 #         self.right = right
 
-from collections import defaultdict, deque
-
 class Solution:
     def verticalOrder(self, root):
         '''
@@ -21,9 +19,9 @@ class Solution:
         :rtype: List[List[int]]
         '''
         if not root: return []
+        cols = collections.defaultdict(list)
+        queue = collections.deque([(root, 0)])
 
-        cols = defaultdict(list)
-        queue = deque([(root, 0)])
         while queue:
             node, col = queue.popleft()
             cols[col].append(node.val)
@@ -31,5 +29,6 @@ class Solution:
                 queue.append((node.left, col-1))
             if node.right:
                 queue.append((node.right, col+1))
+
         # sort the obtained dictionary by its keys
         return [cols[k] for k in sorted(cols.keys())]

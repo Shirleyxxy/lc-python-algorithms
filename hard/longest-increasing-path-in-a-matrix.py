@@ -12,12 +12,12 @@ class Solution:
             return 0
         nrows, ncols = len(matrix), len(matrix[0])
         dp = [[0] * ncols for _ in range(nrows)]
-        max_len = 0
 
         def dfs(i, j):
             '''
             Top-down recursive function.
             '''
+            # we have not started from this position before
             if not dp[i][j]:
                 val = matrix[i][j]
                 dp[i][j] = 1 + max(
@@ -28,7 +28,4 @@ class Solution:
                 )
             return dp[i][j]
 
-        for i in range(nrows):
-            for j in range(ncols):
-                max_len = max(max_len, dfs(i, j))
-        return max_len
+        return max([dfs(i, j) for i in range(nrows) for j in range(ncols)])

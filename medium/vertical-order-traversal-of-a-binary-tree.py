@@ -7,7 +7,6 @@
 
 ## Time Complexity: O(NlogN)
 ## Space Complexity: O(N)
-
 class Solution:
     def verticalTraversal(self, root):
         '''
@@ -17,18 +16,21 @@ class Solution:
         if not root: return []
 
         cols = collections.defaultdict(list)
-        queue = collections.deque([(root, 0, 0)]) # node, x, y
+        queue = collections.deque([(root, 0, 0)]) # node, x, depth
 
         while queue:
-            node, x, y = queue.popleft()
-            cols[x].append((y, node.val))
+            node, x, depth = queue.popleft()
+            cols[x].append((depth, node.val))
             if node.left:
-                queue.append((node.left, x-1, y+1))
+                queue.append((node.left, x-1, depth+1))
             if node.right:
-                queue.append((node.right, x+1, y+1))
+                queue.append((node.right, x+1, depth+1))
 
         res = []
+        # from left to right
         for k in sorted(cols.keys()):
+            # from top to bottom
+            # if two nodes have the same position, report smaller value first
             col = [val[1] for val in sorted(cols[k])]
             res.append(col)
         return res

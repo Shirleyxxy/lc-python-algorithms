@@ -27,3 +27,40 @@ class Solution:
                     # not match: 1 more operation needed + min(replace, delete, insert)
                     dp[i][j] = 1 + min(dp[i-1][j-1], dp[i-1][j], dp[i][j-1])
         return dp[n1][n2]
+
+
+## Recursion with memoization (Top-down)
+## Time Complexity: O(N1 * N2)
+## Space Complexity: O(N1 * N2)
+class Solution:
+    def minDistance(self, word1, word2):
+        '''
+        :type word1: str
+        :type word2: str
+        :rtype: int
+        '''
+        memo = {}
+        return self.minDistanceRec(word1, word2, 0, 0, memo)
+
+    def minDistanceRec(self, word1, word2, i, j, memo):
+        ## Base cases
+        if i == len(word1) and j == len(word2):
+            return 0
+        if i == len(word1):
+            return len(word2) - j
+        if j == len(word2):
+            return len(word1) - i
+
+        ## Cached solution
+        if (i, j) in memo:
+            return memo[(i, j)]
+
+        if word1[i] == word2[j]:
+            return self.minDistanceRec(word1, word2, i+1, j+1, memo)
+        else:
+            insert = 1 + self.minDistanceRec(word1, word2, i+1, j, memo)
+            delete = 1 + self.minDistanceRec(word1, word2, i, j+1, memo)
+            replace = 1 + self.minDistanceRec(word1, word2, i+1, j+1, memo)
+
+        memo[(i, j)] = min(insert, delete, replace)
+        return memo[(i, j)]

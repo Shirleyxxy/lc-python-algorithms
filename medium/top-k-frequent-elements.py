@@ -3,6 +3,7 @@
 
 from heapq import *
 
+
 class Solution:
     def topKFrequent(self, nums, k):
         '''

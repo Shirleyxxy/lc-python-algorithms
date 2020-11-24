@@ -50,7 +50,6 @@ class Solution:
                     count += 1
         return count
 
-
     def dfs(self, grid, i, j):
         if i < 0 or i >= len(grid) or j < 0 or j >= len(grid[0]) or grid[i][j] != '1':
             return
@@ -81,24 +80,15 @@ class Solution:
                     count += 1
         return count
 
-
-    def is_valid(self, grid, i, j):
-        nrow, ncol = len(grid), len(grid[0])
-        if i < 0 or i >= nrow or j < 0 or j >= ncol:
-            return False
-        return True
-
-
     def bfs(self, grid, i, j):
-        queue = deque()
-        queue.append((i, j))
+        queue = deque([(i, j)])
         # mark as visited
         grid[i][j] = '#'
         while queue:
-            directions = [(0,1), (0,-1), (-1,0), (1,0)]
             i, j = queue.popleft()
+            directions = [(0,1), (0,-1), (-1,0), (1,0)]
             for d in directions:
                 new_i, new_j = i + d[0], j + d[1]
-                if self.is_valid(grid, new_i, new_j) and grid[new_i][new_j] == '1':
+                if 0 <= new_i < len(grid) and 0 <= new_j < len(grid[0]) and grid[new_i][new_j] == '1':
                     queue.append((new_i, new_j))
                     grid[new_i][new_j] = '#'

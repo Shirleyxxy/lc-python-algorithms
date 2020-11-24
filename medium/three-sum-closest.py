@@ -1,3 +1,6 @@
+## Two Pointers
+## Time Complexity: O(N^2 + NlogN) --> O(N^2)
+## Space Complexity: O(N) for sorting (also depends on the implementation of the sorting algorithm)
 class Solution:
     def threeSumClosest(self, nums, target):
         min_diff = float('inf')

@@ -13,7 +13,7 @@ class Solution:
         :rtype: int
         '''
         memo = {}
-        def rolls(num_dice, target):
+        def count(num_dice, target):
             if target > num_dice * f: return 0
             if target < 0: return 0
             if num_dice == 0: return target == 0
@@ -21,11 +21,11 @@ class Solution:
 
             num_rolls = 0
             for val in range(1, f+1):
-                num_rolls += rolls(num_dice - 1, target - val)
+                num_rolls += count(num_dice - 1, target - val)
             memo[(num_dice, target)] = num_rolls % (10**9+7)
-            return num_rolls % (10**9+7)
+            return memo[(num_dice, target)]
 
-        return rolls(d, target)
+        return count(d, target)
 
 
 class Solution:
@@ -42,5 +42,24 @@ class Solution:
         for i in range(d+1):
             for t in range(1, target+1):
                 for val in range(1, min(f, t)+1):
+                    dp[i][t] = (dp[i][t] + dp[i-1][t-val]) % mod
+        return dp[d][target]
+
+
+class Solution:
+    def numRollsToTarget(self, d, f, target):
+        '''
+        :type d: int
+        :type f: int
+        :type target: int
+        :rtype: int
+        '''
+        dp = [[0] * (target+1) for _ in range(d+1)]
+        dp[0][0] = 1
+        mod = 10**9+7
+        for i in range(1, d+1):
+            for t in range(1, target+1):
+                for val in range(1, f+1):
+                    if val > t: break
                     dp[i][t] = (dp[i][t] + dp[i-1][t-val]) % mod
         return dp[d][target]

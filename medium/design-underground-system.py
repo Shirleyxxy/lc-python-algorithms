@@ -16,9 +16,10 @@ class UndergroundSystem:
     def __init__(self):
         # save the check-in time and station for a user
         # one entry for each passenger who has checked in, but not checked out
-        self.user = collections.defaultdict(list)
+        # only contains the current check-in data
+        self.users = {}
         # record the times spent between two stations
-        self.stations = collections.defaultdict(list)
+        self.travels = collections.defaultdict(list)
 
 
     def checkIn(self, id, stationName, t):
@@ -28,7 +29,7 @@ class UndergroundSystem:
         :type t: int
         :rtype: None
         '''
-        self.user[id] = [stationName, t]
+        self.users[id] = [stationName, t]
 
 
     def checkOut(self, id, stationName, t):
@@ -38,8 +39,8 @@ class UndergroundSystem:
         :type t: int
         :rtype: None
         '''
-        start_station, start_time = self.user[id]
-        self.stations[(start_station, stationName)].append(t - start_time)
+        start_station, start_time = self.users[id]
+        self.travels[(start_station, stationName)].append(t - start_time)
 
 
     def getAverageTime(self, startStation, endStation):
@@ -48,4 +49,4 @@ class UndergroundSystem:
         :type endStation: str
         :rtype: float
         '''
-        return float(sum(self.stations[(startStation, endStation)]) / len(self.stations[(startStation, endStation)]))
+        return float(sum(self.travels[(startStation, endStation)]) / len(self.travels[(startStation, endStation)]))

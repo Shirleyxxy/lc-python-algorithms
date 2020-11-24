@@ -41,3 +41,25 @@ class Solution:
             # reverse the choice (backtrack) by popping
             # before starting another exploration for the next neighbor node
             curr_path.pop()
+
+
+## Nested solution
+class Solution:
+    def allPathsSourceTarget(self, graph):
+        '''
+        :type graph: List[List[int]]
+        :rtype: List[List[int]]
+        '''
+        all_paths = []
+
+        def dfs(curr_node, curr_path):
+            if curr_node == len(graph) - 1:
+                all_paths.append(curr_path[:])
+                return
+            for node in graph[curr_node]:
+                curr_path.append(node)
+                dfs(node, curr_path)
+                curr_path.pop()
+
+        dfs(0, [0])
+        return all_paths

@@ -1,6 +1,5 @@
 ## Time Complexity: O(N^2)
-## Space Complexity: O(N) for sorting 
-
+## Space Complexity: O(N) for sorting
 class Solution:
     def threeSumSmaller(self, nums, target):
         count = 0

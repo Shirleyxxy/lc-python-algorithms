@@ -3,8 +3,7 @@
 ## Your algorithm's runtime complexity must be in the order of O(log n).
 ## If the target is not found in the array, return [-1, -1].
 
-
-## My Solution (Binary search)
+## My Solution (Binary Search)
 ## Time Complexity: O(logN)
 ## Space Complexity: O(1)
 class Solution:
@@ -32,7 +31,7 @@ class Solution:
         return[-1, -1]
 
 
-## Binary search
+## Binary Search
 class Solution(object):
     def searchRange(self, nums, target):
         '''
@@ -60,12 +59,11 @@ class Solution(object):
         return [-1, -1]
 
 
-## Linear scan (time complexity O(n))
+## Linear Scan (Time Complexity O(N))
 ## The break statement breaks out of the innermost enclosing for or while loop.
 ## Loop statements may have an else clause; it is executed when the loop terminates
 ## through exhaustion of the list (with for) or when the condition becomes false
 ## (with while), but not when the loop is terminated by a break statement.
-
 class Solution(object):
     def searchRange(self, nums, target):
         for i in range(len(nums)):

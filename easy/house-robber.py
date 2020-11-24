@@ -2,14 +2,16 @@
 ## dp[i]: the maximum amount of money you can rob from house 1 to house i
 
 ## Solution 1 - Bottom up DP
-## Time Complexity: O(n)
-## Space Complexity: O(n)
+## Time Complexity: O(N)
+## Space Complexity: O(N)
 
 ## Base case:
 ## f(0) = nums[0]
 ## f(1) = max(nums[0], nums[1])
+
 ## State transition:
 ## f(k) = max(num[k]+f(k-2), f(k-1))
+
 class Solution:
     def rob(self, nums):
         '''
@@ -28,7 +30,7 @@ class Solution:
 
 
 ## Solution 2 - Bottom up DP with constant space
-## Time Complexity: O(n)
+## Time Complexity: O(N)
 ## Space Complexity: O(1)
 class Solution:
     def rob(self, nums):

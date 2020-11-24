@@ -5,7 +5,6 @@
 ## Binary Search
 ## Time Complexity: O(logN)
 ## Space Complexity: O(1)
-
 class Solution:
     def mySqrt(self, x):
         '''

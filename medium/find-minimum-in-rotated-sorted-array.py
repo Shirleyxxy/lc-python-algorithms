@@ -1,5 +1,5 @@
 ## Modified Binary Search
-## No duplicates in the array
+## No duplicates in the array; all the integers are unique
 ## Time Complexity: O(logN)
 ## Space Complexity: O(1)
 
@@ -21,5 +21,5 @@ class Solution:
             # the pivot must be at mid or to the left of the mid
             else:
                 end = mid
-        # at this point, start and end converge to a single index for min value 
+        # at this point, start and end converge to a single index for min value
         return nums[start]

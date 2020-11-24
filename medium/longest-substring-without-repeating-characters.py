@@ -1,7 +1,6 @@
-## Two pointers, sliding window, hash table
-## Time Complexity: O(n)
-## Space Complexity: O(k) for the sliding window, where k is the size of the set
-## (number of unique characters).
+## Sliding Window
+## Time Complexity: O(N)
+## Space Complexity: O(K) where K is the number of unique characters
 
 class Solution:
     def lengthOfLongestSubstring(self, s):
@@ -10,13 +9,13 @@ class Solution:
         :rtype: int
         '''
         start, max_len = 0, 0
-        used_d = {}
+        ch2idx = {}
         for idx, char in enumerate(s):
             # update the start index
-            if char in used_d and start <= used_d[char]:
-                start = used_d[char] + 1
+            if char in ch2idx and start <= ch2idx[char]:
+                start = ch2idx[char] + 1
             # update max_len
             else:
                 max_len = max(max_len, idx - start + 1)
-            used_d[char] = idx
+            ch2idx[char] = idx
         return max_len

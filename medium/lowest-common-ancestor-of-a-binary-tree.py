@@ -4,6 +4,8 @@
 #         self.val = x
 #         self.left = None
 #         self.right = None
+# p and q will exist in the tree, p != q.
+# All node.val are unique.
 
 ## Recursive solution
 ## Time Complexity: O(N)
@@ -29,6 +31,7 @@ class Solution:
             return right
         if not right:
             return left
+        return None
 
 
 ## Iterative solution

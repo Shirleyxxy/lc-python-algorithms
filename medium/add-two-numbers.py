@@ -9,7 +9,7 @@
 ## The length of the new list is at most max(M, N) + 1.
 
 class Solution:
-    def addTwoNumbers(self, l1, l2) -> ListNode:
+    def addTwoNumbers(self, l1, l2):
         '''
         :type l1: ListNode
         :type l2: ListNode
@@ -28,6 +28,7 @@ class Solution:
                 l1 = l1.next
             if l2:
                 l2 = l2.next
+        ## Tricky part: need to check carry
         if carry > 0:
             curr.next = ListNode(carry)
         return dummy_head.next

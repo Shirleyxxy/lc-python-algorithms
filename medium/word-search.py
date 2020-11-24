@@ -38,3 +38,33 @@ class Solution:
         # backtracking
         board[i][j] = curr_match
         return res
+
+
+class Solution:
+    def exist(self, board, word):
+        '''
+        :type board: List[List[str]]
+        :type word: str
+        :rtype: bool
+        '''
+        self.board = board
+        self.word = word
+        for r in range(len(self.board)):
+            for c in range(len(self.board[0])):
+                if self.search(r, c, 0):
+                    return True
+        return False
+
+    def search(self, row, col, i):
+        if i == len(self.word):
+            return True
+        if row < 0 or row >= len(self.board) or col < 0 or col >= len(self.board[0]):
+            return False
+        if self.board[row][col] != self.word[i]:
+            return False
+        matched_ch = self.board[row][col]
+        self.board[row][col] = '*'
+        res = self.search(row+1, col, i+1) or self.search(row, col+1, i+1) \
+             or self.search(row-1, col, i+1) or self.search(row, col-1, i+1)
+        self.board[row][col] = matched_ch
+        return res

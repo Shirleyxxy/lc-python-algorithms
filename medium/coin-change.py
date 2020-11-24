@@ -5,7 +5,7 @@
 ## Time Complexity: O(amount * len(coins))
 ## Space Complexity: O(amount)
 
-## Bottom up DP
+## Bottom-up DP
 class Solution:
     def coinChange(self, coins, amount):
         '''
@@ -19,6 +19,7 @@ class Solution:
                 if amt - coin >= 0:
                     dp[amt] = min(dp[amt], dp[amt-coin] + 1)
         return dp[amount] if dp[amount] != float('inf') else -1
+
 
 ## DP (slightly better)
 class Solution:

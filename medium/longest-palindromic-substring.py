@@ -39,9 +39,8 @@ class Solution:
 ## Solution 2: Optimized version of solution 1
 ## Expand around the center
 ## Using the key parameter in max function
-## Time Complexity: O(n^2)
-## Space Complexity: O(n)
-
+## Time Complexity: O(N^2)
+## Space Complexity: O(N)
 class Solution:
     def longest_palindrome_at(self, s, l, r):
         '''
@@ -60,6 +59,7 @@ class Solution:
         if not s: return ''
         res = ''
         for i in range(len(s)):
+            ## case 1, like "aba"; case 2, like "abba"
             res = max(self.longest_palindrome_at(s, i, i), self.longest_palindrome_at(s, i, i+1), res, key = len)
         return res
 
@@ -97,12 +97,10 @@ class Solution:
 
 
 ## Solution 4: Bottom-up DP
-## Time Complexity: O(n^2)
-## Space Complexity: O(n^2)
+## Time Complexity: O(N^2)
+## Space Complexity: O(N^2)
 ## Note: the l and r indices are the exact indices for the substring
 ## In the previous solutions, the indices are for slicing
-
-
 class Solution:
     def longestPalindrome(self, s):
         '''
@@ -144,7 +142,6 @@ class Solution:
 ## Updated: Bottom-up DP
 ## Time Complexity: O(N^2)
 ## Space Complexity: O(N^2)
-
 class Solution:
     def longestPalindrome(self, s):
         '''

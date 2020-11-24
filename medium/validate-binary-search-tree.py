@@ -65,9 +65,9 @@ class Solution:
         :type root: TreeNode
         :rtype: bool
         '''
-        return self.isValidBSTFrom(root)
+        return self.isValidBSTFrom(root, float('-inf'), float('inf'))
 
-    def isValidBSTFrom(self, node, lo = float('-inf'), hi = float('inf')):
+    def isValidBSTFrom(self, node, lo, hi):
         if not node: return True
         if not lo < node.val < hi:
             return False

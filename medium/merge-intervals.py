@@ -1,6 +1,7 @@
 ## Time Complexity: O(N * logN), dominated by sorting
 ## Space Complexity: O(N)
 
+
 class Solution:
     def merge(self, intervals):
         '''

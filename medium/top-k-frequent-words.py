@@ -1,6 +1,7 @@
 ## Time Complexity: O(NlogK)
 ## Space Complexity: O(N)
 
+
 from heapq import *
 
 class Word:

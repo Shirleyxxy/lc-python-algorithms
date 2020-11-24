@@ -11,7 +11,6 @@
 
 ## Time Complexity: O(NlogK)
 ## Space Complexity: O(K)
-
 from heapq import *
 
 class Solution:
@@ -30,8 +29,32 @@ class Solution:
             if not node.next:
                 heappop(min_heap)
             else:
-                # recycling tie-breaker i guarantees uniqueness
+                # pop, then push; recycling tie-breaker i guarantees uniqueness
                 heapreplace(min_heap, (node.next.val, i, node.next))
             curr.next = node
             curr = curr.next
+        return dummy.next
+
+
+## My Solution (similar idea)
+## Time Complexity: O(NlogK)
+## Space Complexity: O(K)
+from heapq import *
+
+class Solution:
+    def mergeKLists(self, lists):
+        '''
+        :type lists: List[ListNode]
+        :rtype: ListNode
+        '''
+        min_heap = [(head.val, i, head) for i, head in enumerate(lists) if head]
+        heapify(min_heap)
+        dummy = ListNode(0)
+        curr = dummy
+        while min_heap:
+            val, i, node = heappop(min_heap)
+            curr.next = node
+            curr = curr.next
+            if node.next:
+                heappush(min_heap, (node.next.val, i, node.next))
         return dummy.next

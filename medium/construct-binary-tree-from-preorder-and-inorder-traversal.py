@@ -36,7 +36,6 @@ class Solution:
 ## 1. Use left and right pointers rather than slicing (copying) inorder list when building subtrees
 ## 2. Use dictionary to store the indexes of the elements in the inorder list to avoid searching every time
 ## O(N) time complexity for list.index(x)
-
 class Solution:
     def buildTree(self, preorder, inorder):
         '''

@@ -4,7 +4,6 @@
 ## Space Complexity: O(N), N is the size of the grid
 
 from collections import deque
-
 class Solution:
     def orangesRotting(self, grid):
         '''

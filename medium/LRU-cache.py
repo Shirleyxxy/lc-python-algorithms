@@ -11,20 +11,17 @@
 ## The popitem() method for ordered dictionaries returns and removes a (key, value) pair.
 ## The pairs are returned in LIFO order if last is true or FIFO order if false.
 
-
 ## Solution 1: OrderedDict
 ## Time Complexity: O(1) both for put & get
 ## Space Complexity: O(capacity)
-
-from collections import OrderedDict
-
-class LRUCache(OrderedDict):
-
+class LRUCache():
     def __init__(self, capacity):
         '''
         :type capacity: int
         '''
+        self.d = collections.OrderedDict()
         self.capacity = capacity
+
 
     def get(self, key):
         '''
@@ -33,10 +30,11 @@ class LRUCache(OrderedDict):
         Get the value of the key if the key exists in the cache,
         otherwise return -1.
         '''
-        if key not in self:
-            return -1
-        self.move_to_end(key)
-        return self[key]
+        if key in self.d:
+            self.d.move_to_end(key)
+            return self.d[key]
+        return -1
+
 
     def put(self, key, value):
         '''
@@ -47,12 +45,11 @@ class LRUCache(OrderedDict):
         When the cache reached its capacity, it should invalidate
         the least recently used item before inserting a new item.
         '''
-        if key in self:
-            self.move_to_end(key)
-        self[key] = value
-        if len(self) > self.capacity:
-            self.popitem(last = False)
-
+        if key in self.d:
+            self.d.move_to_end(key)
+        self.d[key] = value
+        if len(self.d) > self.capacity:
+            self.d.popitem(last = False)
 
 
 ## Solution 2: Dictionary + DoubleLinkedList
@@ -60,7 +57,6 @@ class LRUCache(OrderedDict):
 ## need to check the null node during the update.
 ## Time Complexity: O(1) both for put & get
 ## Space Complexity: O(capacity)
-
 class DoubleLinkedListNode():
     def __init__(self, key, val):
         self.key = key
