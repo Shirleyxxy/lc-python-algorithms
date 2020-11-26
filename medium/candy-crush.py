@@ -19,10 +19,10 @@ class Solution:
                 for j in range(ncols):
                     # check horizontally in groups of 3
                     if j > 1 and board[i][j] and board[i][j] == board[i][j-1] == board[i][j-2]:
-                        crush |= {(i, j), (i, j-1), (i, j-2)}
+                        crush.update([(i, j), (i, j-1), (i, j-2)])
                     # check vertically in groups of 3
                     if i > 1 and board[i][j] and board[i][j] == board[i-1][j] == board[i-2][j]:
-                        crush |= {(i, j), (i-1, j), (i-2, j)}
+                        crush.update([(i, j), (i-1, j), (i-2, j)])
 
             # step 2
             # reach the stable state --> break the loop and return the board
