@@ -1,5 +1,5 @@
 ## Dictionary + List
-## Time Complexity: O(1)
+## Time Complexity: O(1) for all operations 
 ## Space Complexity: O(N)
 
 class RandomizedSet:

@@ -1,7 +1,8 @@
-## Solution 1 - stack + set 
+## Solution 1 - Stack + set
+## Identify all indexes that should be removed
+## Build a new string with removed indexes
 ## Time Complexity: O(N)
 ## Space Complexity: O(N)
-
 class Solution:
     def minRemoveToMakeValid(self, s):
         '''
@@ -17,11 +18,15 @@ class Solution:
                     opens.pop()
                 else:
                     closes.append(i)
+        ## Using set is much faster
+        ## Checking if an item is in a set is O(1)
         indexes_to_remove = set(opens + closes)
         return ''.join([s[i] for i in range(len(s)) if i not in indexes_to_remove])
 
 
-## Time Complexity: O(N) - much faster
+
+## Solution 2 - Two iterations (left to right + right to left)
+## Time Complexity: O(N)
 ## Space Complexity: O(N)
 class Solution:
     def minRemoveToMakeValid(self, s):
