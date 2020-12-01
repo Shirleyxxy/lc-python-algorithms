@@ -40,12 +40,11 @@ class FirstUnique:
 ## and the list of numbers is very long (N is large)?
 ## Set + Dictionary
 ## We can use OrderedDict since we need to keep track of the order of the unique numbers.
-## However, normal dictionary is Python >= 3.6 is ordered dictionary, so we can easily get the first element
+## However, normal dictionary in Python >= 3.6 preserves the insertion order, so we can easily get the first element
 ## by iterating it.
 
 ## Time Complexity: O(K) for constructor; O(1) for add and showFirstUnique
 ## Space Complexity: O(N)
-
 class FirstUnique:
     def __init__(self, nums):
         '''
@@ -64,6 +63,42 @@ class FirstUnique:
         #     return key
         # return -1
         return next(iter(self.unique_nums), -1)
+
+    def add(self, value):
+        '''
+        :type value: int
+        :rtype: None
+        '''
+        if value not in self.added:
+            self.added.add(value)
+            self.unique_nums[value] = True
+        else:
+            if value in self.unique_nums:
+                del self.unique_nums[value]
+
+
+## Same as above - use OrderedDict as an ordered set
+from collections import OrderedDict
+
+class FirstUnique:
+    def __init__(self, nums):
+        '''
+        :type nums: List[int]
+        '''
+        self.added = set()
+        self.unique_nums = OrderedDict()
+        for num in nums:
+            self.add(num)
+
+
+    def showFirstUnique(self):
+        '''
+        :rtype: int
+        '''
+        for key in self.unique_nums.keys():
+            return key
+        return -1
+
 
     def add(self, value):
         '''

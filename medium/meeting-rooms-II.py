@@ -24,6 +24,7 @@ class Solution:
             else:
                 # pop, then push the next meeting that
                 # can use the previously allocated room
+                # update the end time of this room in use
                 heapreplace(min_heap, interval[1])
 
         return len(min_heap)

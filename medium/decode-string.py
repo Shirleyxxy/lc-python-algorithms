@@ -2,7 +2,6 @@
 ## Time Complexity: O(N)
 ## Space Complexity: O(N)
 
-
 class Solution:
     def decodeString(self, s):
         '''
@@ -13,8 +12,9 @@ class Solution:
         for ch in s:
             if ch == '[':
                 stack.append((curr_num, curr_str))
-                # reset
+                ## reset
                 curr_num, curr_str = 0, ''
+            ## start to decode the pattern
             elif ch == ']':
                 num, prev_str = stack.pop()
                 curr_str = prev_str + num * curr_str

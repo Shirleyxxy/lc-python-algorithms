@@ -1,6 +1,7 @@
 ## Time Complexity: O(2^N)
 ## Space Complexity: O(2^N)
 
+## Walk through a small example: nums = [1, 2, 2]
 class Solution:
     def subsetsWithDup(self, nums):
         '''

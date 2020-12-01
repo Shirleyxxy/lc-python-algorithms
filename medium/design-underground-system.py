@@ -10,6 +10,27 @@
 ## As we don't know whether S^2 or P is larger, we need to add these
 ## together, giving a total space complexity of O(P + S^2).
 
+## Data structure: one regular dictionary + one defaultdict(list)
+## How does Python store dictionaries?
+## hash table: <hash, key, value>
+## hash collisions: random probing for an empty slot
+
+## Python's dictionary implementation reduces the average complexity of dictionary lookups to O(1)
+## by requiring that key objects provide a "hash" function. Such a hash function takes the information
+## in a key object and uses it to produce an integer, called a hash value.
+## This hash value is then used to determine which "bucket" this (key, value) pair should be placed into.
+
+## What key types can be used in Python?
+## A dictionary key must be of a type that is immutable!
+## We can use an integer, float, string, Boolean or tuple as dictionary key.
+## A list cannot be served as a dictionary key! (lists and dictionaries are mutable)
+
+## Follow-up Questions:
+## What if a person lost his card?
+## Checked in, but never checked out? (==> Clean the invalid data in the db periodically)
+## Multiple checked in (==> override the previous data)
+## How to calculate the average time if the number of passengers making a journey at the same time is very large?
+## (==> MapReduce?)
 
 class UndergroundSystem:
 

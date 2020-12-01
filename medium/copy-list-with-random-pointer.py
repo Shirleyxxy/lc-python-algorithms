@@ -8,11 +8,9 @@ class Node:
 """
 
 #############
-## Updated on Sep-19-2020
 ## Iterative solution
 ## Time Complexity: O(N)
 ## Space Complexity: O(N)
-
 class Solution:
     def copyRandomList(self, head):
         '''
@@ -50,7 +48,6 @@ class Solution:
 ## other using the next pointer.
 
 #############
-## Updated on Aug-16-2020
 ## More compact recursive (dfs) solution
 class Solution:
     def copyRandomList(self, head):

@@ -21,11 +21,13 @@ class Solution:
             graph[parent].append(child)
             in_degrees[child] += 1
 
+        ## sources contain courses w/o prerequisites
         sources = deque()
         for course in in_degrees:
             if in_degrees[course] == 0:
                 sources.append(course)
 
+        ## start from courses w/o prerequisites
         while sources:
             course = sources.popleft()
             sorted_order.append(course)
@@ -34,6 +36,10 @@ class Solution:
                 if in_degrees[child] == 0:
                     sources.append(child)
 
+        ## terminate when we can no longer remove edges from the graph
+        ## case 1 - the edges left in the graph form cycles
+        ## case 2 - all the edges have been removed & we have the topological order of the graph
+        ## (aka. completed all the courses in the topological order)
         if len(sorted_order) == numCourses:
             return sorted_order
         return []

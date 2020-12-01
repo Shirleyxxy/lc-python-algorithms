@@ -33,6 +33,7 @@ class Solution:
         return True
 
 
+
 ## Solution 2 - Stack (lower & upper limits)
 ## Time Complexity: O(N)
 ## Space Complexity: O(N)
@@ -56,7 +57,8 @@ class Solution:
         return True
 
 
-## Solution 3 - Recursion
+
+## Solution 3 - Recursion (easy to code)
 ## Time Complexity: O(N) - we visit each node exactly once.
 ## Space Complexity: O(N)
 class Solution:

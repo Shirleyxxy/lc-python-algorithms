@@ -1,6 +1,9 @@
+## Cascading
+## Start from empty subset
+## At each step one takes new integer into consideration and
+## generates new subsets from the existing ones
 ## Time Complexity: O(2^N)
 ## Space Complexity: O(2^N)
-
 class Solution:
     def subsets(self, nums):
         '''
@@ -32,8 +35,10 @@ class Solution:
             if i == len(nums):
                 subsets.append(subset[:])
             else:
+                # include the number
                 subset.append(nums[i])
                 backtracking(i+1)
+                # not include the number 
                 subset.pop()
                 backtracking(i+1)
 

@@ -1,4 +1,4 @@
-## Dictionary + List
+## Dictionary (defaultdict + set) + List
 ## Time Complexity: O(1) for all operations
 ## Space Complexity: O(N)
 class RandomizedCollection:

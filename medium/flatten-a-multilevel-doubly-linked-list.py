@@ -50,6 +50,7 @@ class Solution:
         return self.flatten_dfs(tail, temp_next)
 
 
+
 ## Solution 2 - Preorder DFS using stack
 ## Time Complexity: O(N)
 ## Space Complexity: O(N) additional space
@@ -78,6 +79,7 @@ class Solution:
             order[i].child = None
 
         return order[0]
+
 
 
 ## Solution 3 - Preorder DFS using stack & Optimized space
