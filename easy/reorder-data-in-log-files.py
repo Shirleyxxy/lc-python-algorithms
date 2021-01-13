@@ -2,6 +2,8 @@
 ## Space Complexity: O(N)
 
 ## Constraint: logs[i] is guaranteed to have an identifier and a word after the identifier
+## Take-away:
+## Sort a list by 2 keys
 class Solution:
     def reorderLogFiles(self, logs):
         '''
