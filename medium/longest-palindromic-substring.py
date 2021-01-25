@@ -3,9 +3,8 @@
 ## Ref: http://gitlinux.net/2019-08-26-(5)-longest-palindromic-substring/
 
 ## Solution 1: Expand around center
-## Time Complexity: O(n^2)
-## Space Complexity: O(n)
-
+## Time Complexity: O(N^2)
+## Space Complexity: O(N)
 class Solution:
     def longest_palindrome_at(self, s, l, r):
         '''
@@ -36,7 +35,7 @@ class Solution:
         return res
 
 
-## Solution 2: Optimized version of solution 1
+## Solution 2: Optimized version of solution 1 (Preferred solution 1)
 ## Expand around the center
 ## Using the key parameter in max function
 ## Time Complexity: O(N^2)
@@ -68,9 +67,8 @@ class Solution:
 ## Expand around the center
 ## Using the key parameter in max function
 ## Using start, end index to keep track --> constant space
-## Time Complexity: O(n^2)
+## Time Complexity: O(N^2)
 ## Space Complexity: O(1)
-
 class Solution:
     def get_max_len(self, s, l, r):
         '''
@@ -139,7 +137,7 @@ class Solution:
         return s[l:r+1]
 
 
-## Updated: Bottom-up DP
+## Updated: Bottom-up DP (Preferred solution 2)
 ## Time Complexity: O(N^2)
 ## Space Complexity: O(N^2)
 class Solution:
@@ -151,15 +149,18 @@ class Solution:
         dp = [[False for _ in range(len(s))] for _ in range(len(s))]
         start, end = 0, 0
 
+        # base case
         for i in range(len(s)):
             dp[i][i] = True
 
-        for start_idx in range(len(s)-1, -1, -1):
-            for end_idx in range(start_idx+1, len(s)):
-                if s[start_idx] == s[end_idx]:
-                    if end_idx - start_idx == 1 or dp[start_idx+1][end_idx-1]:
-                        dp[start_idx][end_idx] = True
-                        if end_idx-start_idx+1 > end-start+1:
-                            start = start_idx
-                            end = end_idx
+        for left in range(len(s)-1, -1, -1):
+            for right in range(left+1, len(s)):
+                if s[left] == s[right]:
+                    # be careful here: two cases
+                    if right - left == 1 or dp[left+1][right-1]:
+                        dp[left][right] = True
+                        # update start & end if we find a longer substring
+                        if right - left + 1 > end - start + 1:
+                            start = left
+                            end = right
         return s[start:end+1]

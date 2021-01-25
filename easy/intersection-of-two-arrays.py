@@ -43,7 +43,7 @@ class Solution:
         return res
 
 
-## Dictionary
+## Dictionary (Preferred solution)
 ## Time Complexity: O(N + M)
 ## Space Complexity: O(N)
 class Solution:

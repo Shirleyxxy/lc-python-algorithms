@@ -11,7 +11,6 @@
 
 ## State transition:
 ## f(k) = max(num[k]+f(k-2), f(k-1))
-
 class Solution:
     def rob(self, nums):
         '''

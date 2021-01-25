@@ -24,4 +24,6 @@ class Solution:
                 # return False if any letter of the former word is in higher order
                 elif mapping[c1] > mapping[c2]:
                     return False
+                else:
+                    continue
         return True

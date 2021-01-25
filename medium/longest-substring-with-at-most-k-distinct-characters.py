@@ -1,8 +1,7 @@
+## Sliding Window
 ## Given a string, find the length of the longest substring T that contains at most k distinct characters.
-
 ## Time Complexity: O(N) - N is the number of characters in the input string
 ## Space Complexity: O(K) - We will be storing a maximum of K+1 characters in the dictionary
-
 class Solution:
     def lengthOfLongestSubstringKDistinct(self, s, k):
         '''

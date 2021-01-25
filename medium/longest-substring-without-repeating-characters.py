@@ -1,7 +1,6 @@
 ## Sliding Window
 ## Time Complexity: O(N)
 ## Space Complexity: O(K) where K is the number of unique characters
-
 class Solution:
     def lengthOfLongestSubstring(self, s):
         '''

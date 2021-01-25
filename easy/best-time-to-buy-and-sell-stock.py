@@ -1,7 +1,6 @@
 ## One pass solution (Greedy)
 ## Time Complexity: O(N) - a single pass
 ## Space Complexity: O(1) - only 2 variables
-
 class Solution:
     def maxProfit(self, prices):
         '''
@@ -13,5 +12,5 @@ class Solution:
         max_profit, min_price = 0, float('inf')
         for price in prices:
             min_price = min(price, min_price)
-            max_profit = max(price-min_price, max_profit)
+            max_profit = max(price - min_price, max_profit)
         return max_profit
