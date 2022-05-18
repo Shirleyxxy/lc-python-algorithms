@@ -5,11 +5,11 @@
 ## Space Complexity: O(1) - No extra space needed
 class Solution:
     def isAnagram(self, s, t):
-        '''
+        """
         :type s: str
         :type t: str
         :rtype: bool
-        '''
+        """
         return sorted(s) == sorted(t)
 
 
@@ -20,11 +20,11 @@ class Solution:
 ## stays constant no matter how large n is. (Both s and t contain only letters from a to z.)
 class Solution:
     def isAnagram(self, s, t):
-        '''
+        """
         :type s: str
         :type t: str
         :rtype: bool
-        '''
+        """
         d1, d2 = {}, {}
         for char in s:
             if char not in d1:
@@ -42,11 +42,11 @@ class Solution:
 ## A more elegant way to use two dictionaries
 class Solution:
     def isAnagram(self, s, t):
-        '''
+        """
         :type s: str
         :type t: str
         :rtype: bool
-        '''
+        """
         d1, d2 = {}, {}
         for item in s:
             d1[item] = d1.get(item, 0) + 1
@@ -57,13 +57,15 @@ class Solution:
 
 ## using Counter
 from collections import Counter
+
+
 class Solution:
     def isAnagram(self, s, t):
-        '''
+        """
         :type s: str
         :type t: str
         :rtype: bool
-        '''
+        """
         return Counter(s) == Counter(t)
 
 
@@ -73,11 +75,11 @@ class Solution:
 ## Space Complexity: O(1)
 class Solution:
     def isAnagram(self, s, t):
-        '''
+        """
         :type s: str
         :type t: str
         :rtype: bool
-        '''
+        """
         d = {}
         for ch in s:
             d[ch] = d.get(ch, 0) + 1

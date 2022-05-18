@@ -7,49 +7,55 @@
 # p and q will exist in the tree, p != q.
 # All node.val are unique.
 
-## Recursive solution
-## Time Complexity: O(N)
-## Space Complexity: O(N)
-## In the worst case we might be visiting all the nodes of the binary tree.
+
+## recursive solution
+## time complexity: O(N)
+## space complexity: O(N)
+## in the worst case we might be visiting all the nodes of the binary tree.
 class Solution:
     def lowestCommonAncestor(self, root, p, q):
-        '''
+        """
         :type root: TreeNode
         :type p: TreeNode
         :type q: TreeNode
         :rtype: TreeNode
-        '''
-        if not root: return None
+        """
+        if not root:
+            return None
         if root == p or root == q:
             return root
+
         left = self.lowestCommonAncestor(root.left, p, q)
         right = self.lowestCommonAncestor(root.right, p, q)
 
         if left and right:
             return root
-        if not left:
-            return right
-        if not right:
+        if left and not right:
             return left
+        if right and not left:
+            return right
+
         return None
 
 
-## Iterative solution
-## Time Complexity: O(N)
-## Space Complexity: O(N)
+## iterative solution
+## time complexity: O(N)
+## space complexity: O(N)
 class Solution:
     def lowestCommonAncestor(self, root, p, q):
-        '''
+        """
         :type root: TreeNode
         :type p: TreeNode
         :type q: TreeNode
         :rtype: TreeNode
-        '''
-        if not root: return None
+        """
+        if not root:
+            return None
+
         queue = collections.deque([root])
         # dictionary for parent pointers
-        parent = {root:None}
-        # Iterate until we find both q and q
+        parent = {root: None}
+        # iterate until we find both p and q
         while p not in parent or q not in parent:
             node = queue.popleft()
             if node.left:
@@ -58,13 +64,16 @@ class Solution:
             if node.right:
                 queue.append(node.right)
                 parent[node.right] = node
-        # Process all ancestors for node p using parent pointers
+
+        # process all ancestors for node p using parent pointers
         ancestors = set()
         while p:
             ancestors.add(p)
             p = parent[p]
-        # The first ancestor of q which appears in p's ancestors is their
-        # lowest common ancestor
+
         while q not in ancestors:
             q = parent[q]
+
+        # the first ancestor of q which appears in p's ancestors is their
+        # lowest common ancestor
         return q

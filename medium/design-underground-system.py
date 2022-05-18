@@ -22,7 +22,7 @@
 
 ## What key types can be used in Python?
 ## A dictionary key must be of a type that is immutable!
-## We can use an integer, float, string, Boolean or tuple as dictionary key.
+## We can use an integer, float, string, boolean or tuple as dictionary key.
 ## A list cannot be served as a dictionary key! (lists and dictionaries are mutable)
 
 ## Follow-up Questions:
@@ -32,8 +32,8 @@
 ## How to calculate the average time if the number of passengers making a journey at the same time is very large?
 ## (==> MapReduce?)
 
-class UndergroundSystem:
 
+class UndergroundSystem:
     def __init__(self):
         # save the check-in time and station for a user
         # one entry for each passenger who has checked in, but not checked out
@@ -42,32 +42,32 @@ class UndergroundSystem:
         # record the times spent between two stations
         self.travels = collections.defaultdict(list)
 
-
     def checkIn(self, id, stationName, t):
-        '''
+        """
         :type id: int
         :type stationName: str
         :type t: int
         :rtype: None
-        '''
+        """
         self.users[id] = [stationName, t]
 
-
     def checkOut(self, id, stationName, t):
-        '''
+        """
         :type id: int
         :type stationName: str
         :type t: int
         :rtype: None
-        '''
+        """
         start_station, start_time = self.users[id]
         self.travels[(start_station, stationName)].append(t - start_time)
 
-
     def getAverageTime(self, startStation, endStation):
-        '''
+        """
         :type startStation: str
         :type endStation: str
         :rtype: float
-        '''
-        return float(sum(self.travels[(startStation, endStation)]) / len(self.travels[(startStation, endStation)]))
+        """
+        return float(
+            sum(self.travels[(startStation, endStation)])
+            / len(self.travels[(startStation, endStation)])
+        )

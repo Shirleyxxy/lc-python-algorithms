@@ -5,6 +5,7 @@
 #         self.left = None
 #         self.right = None
 
+
 ## Recursive solution
 ## Time Complexity: O(N)
 ## Space Complexity: O(N)
@@ -12,13 +13,14 @@
 ## since the height of a skewed BST could be N.
 class Solution:
     def lowestCommonAncestor(self, root, p, q):
-        '''
+        """
         :type root: TreeNode
         :type p: TreeNode
         :type q: TreeNode
         :rtype: TreeNode
-        '''
-        if not root: return None
+        """
+        if not root:
+            return None
         # both p and q are in the right subtree
         if p.val > root.val and q.val > root.val:
             return self.lowestCommonAncestor(root.right, p, q)
@@ -35,12 +37,12 @@ class Solution:
 ## Space Complexity: O(1)
 class Solution:
     def lowestCommonAncestor(self, root, p, q):
-        '''
+        """
         :type root: TreeNode
         :type p: TreeNode
         :type q: TreeNode
         :rtype: TreeNode
-        '''
+        """
         while root:
             if p.val > root.val and q.val > root.val:
                 root = root.right

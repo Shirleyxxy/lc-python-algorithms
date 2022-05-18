@@ -14,50 +14,49 @@
 ## Solution 1: OrderedDict
 ## Time Complexity: O(1) both for put & get
 ## Space Complexity: O(capacity)
-class LRUCache():
+class LRUCache:
     def __init__(self, capacity):
-        '''
+        """
         :type capacity: int
-        '''
+        """
         self.d = collections.OrderedDict()
         self.capacity = capacity
 
-
     def get(self, key):
-        '''
+        """
         :type key: int
         :rtype: int
         Get the value of the key if the key exists in the cache,
         otherwise return -1.
-        '''
+        """
         if key in self.d:
             self.d.move_to_end(key)
             return self.d[key]
         return -1
 
-
     def put(self, key, value):
-        '''
+        """
         :type key: int
         :type value: int
         :rtype: None
         Set or insert the value if the key is not already present.
         When the cache reached its capacity, it should invalidate
         the least recently used item before inserting a new item.
-        '''
+        """
         if key in self.d:
             self.d.move_to_end(key)
         self.d[key] = value
         if len(self.d) > self.capacity:
-            self.d.popitem(last = False)
+            self.d.popitem(last=False)
 
 
 ## Solution 2: Dictionary + DoubleLinkedList
 ## There are pseudo head and pseudo tail to mark the boundary, so that we don't
 ## need to check the null node during the update.
+
 ## Time Complexity: O(1) both for put & get
 ## Space Complexity: O(capacity)
-class DoubleLinkedListNode():
+class DoubleLinkedListNode:
     def __init__(self, key, val):
         self.key = key
         self.value = val
@@ -65,7 +64,7 @@ class DoubleLinkedListNode():
         self.next = None
 
 
-class LRUCache():
+class LRUCache:
     def __init__(self, capacity):
         self.cache = {}
         self.capacity = capacity
@@ -75,35 +74,32 @@ class LRUCache():
         self.head.next = self.tail
         self.tail.prev = self.head
 
-
     def _add_node(self, node):
-        '''
+        """
         Add the node to the end of the DoubleLinkedList.
-        '''
+        """
         p_node = self.tail.prev
         p_node.next = node
         node.prev = p_node
         node.next = self.tail
         self.tail.prev = node
 
-
     def _remove_node(self, node):
-        '''
+        """
         Remove the specified node from the DoubleLinkedList.
-        '''
+        """
         p_node = node.prev
         n_node = node.next
         p_node.next = n_node
         n_node.prev = p_node
 
-
     def get(self, key):
-        '''
+        """
         :type key: int
         :rtype: int
         Get the value of the key if the key exists in the cache,
         otherwise return -1.
-        '''
+        """
         if key in self.cache:
             node = self.cache[key]
             # move the node to the end of the DoubleLinkedList
@@ -112,16 +108,15 @@ class LRUCache():
             return node.value
         return -1
 
-
     def put(self, key, value):
-        '''
+        """
         :type key: int
         :type value: int
         :rtype: None
         Set or insert the value if the key is not already present.
         When the cache reached its capacity, it should invalidate
         the least recently used item before inserting a new item.
-        '''
+        """
         if key in self.cache:
             # update the node and move to the end
             node = self.cache[key]

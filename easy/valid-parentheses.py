@@ -2,14 +2,16 @@
 ## push and pop operations on a stack take O(1) time.
 ## Space Complexity: O(N) as we push all opening brackets onto the stack and in the worst case
 ## we will end up pushing all the brackets onto the stack.
+
+
 class Solution:
     def isValid(self, s):
-        '''
+        """
         :type s: str
         :rtype: boolean
-        '''
+        """
         stack = []
-        d = {'(':')', '{':'}', '[':']'}
+        d = {"(": ")", "{": "}", "[": "]"}
         for el in s:
             if el in d:
                 stack.append(el)
@@ -19,15 +21,14 @@ class Solution:
         return stack == []
 
 
-
 class Solution:
     def isValid(self, s):
-        '''
+        """
         :type s: str
         :rtype: boolean
-        '''
+        """
         stack = []
-        d = {'(':')', '{':'}', '[':']'}
+        d = {"(": ")", "{": "}", "[": "]"}
         for ch in s:
             if ch in d:
                 stack.append(ch)

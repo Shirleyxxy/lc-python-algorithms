@@ -9,13 +9,14 @@
 ## Time Complexity: O(N)
 ## Space Complexity: O(N)
 
+
 class Solution:
     def addTwoNumbers(self, l1, l2):
-        '''
+        """
         :type l1: ListNode
         :type l2: ListNode
         :rtype: ListNode
-        '''
+        """
         stack1, stack2 = [], []
         while l1:
             stack1.append(l1.val)
@@ -36,20 +37,21 @@ class Solution:
             # create a new ListNode and set the pointer to the current
             # updated ListNode
             head, head.next = ListNode(-1), head
-            #temp = head
-            #head = ListNode(-1)
-            #head.next = temp
+            # temp = head
+            # head = ListNode(-1)
+            # head.next = temp
         return head.next
 
 
 ## My solution
 class Solution:
     def addTwoNumbers(self, l1, l2):
-        '''
+        """
         :type l1: ListNode
         :type l2: ListNode
         :rtype: ListNode
-        '''
+        """
+        # reverse linked lists
         stack1, stack2 = [], []
         while l1:
             stack1.append(l1.val)
@@ -69,6 +71,7 @@ class Solution:
         if carry > 0:
             head.val = carry
             head, head.next = ListNode(-1), head
+
         return head.next
 
 
@@ -76,10 +79,10 @@ class Solution:
 ## Reverse LinkedLists + Add Two Numbers (lc2)
 class Solution:
     def reverseList(self, head):
-        '''
+        """
         :type head: ListNode
         :rtype: ListNode
-        '''
+        """
         prev, curr = None, head
         while curr:
             next = curr.next
@@ -88,13 +91,12 @@ class Solution:
             curr = next
         return prev
 
-
     def addTwoNumbers(self, l1, l2):
-        '''
+        """
         :type l1: ListNode
         :type l2: ListNode
         :rtype: ListNode
-        '''
+        """
         l1 = self.reverseList(l1)
         l2 = self.reverseList(l2)
 

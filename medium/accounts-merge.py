@@ -1,15 +1,21 @@
 ## DFS, graph
 ## For every pair of emails in the same account, draw an edge between those emails.
-## The problem is to enumerate the connected components of this graph.
+## The problem is to explore the connected components of this graph.
 
 ## Step 1 - construct the graph
-## Step 2 - perform DFS to find connected components
+## Step 2 - perform DFS to explore each connected component
 
 ## N = number of accounts
 ## K = maximum length of an account
 
 
-## Time complexity: O(NKlogNK)
+## Time complexity: O(NK * logNK)
+## In the worst case, all the emails belong to a single person.
+## The total number of emails will be N * K, and we need to sort
+## these emails --> O(NK * logNK)
+
+## DFS traversal will take NK operations as no email will be traversed more than once.
+
 ## Space complexity: O(NK)
 
 from collections import defaultdict
@@ -44,3 +50,12 @@ class Solution:
             dfs(i, emails)
             res.append([name] + sorted(emails))
         return res
+
+
+## Intuition:
+## emails = nodes, an edge will signify that two emails are connected and hence belong to the same person.
+## as long as two emails are connected by a path of edges, we know they belong to the same account.
+## each connected component will represent one person, and the nodes in the connected component are the person's emails.
+## ---> explore each connected component to find all the emails that belong to each person
+## --> since a depth-first search is guaranteed to explore every node in a connected component
+## we will perform a DFS on each connected component (person) to find all of the connected emails.

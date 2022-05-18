@@ -1,7 +1,6 @@
 ## Dictionary
 ## Time complexity: O(N)
 ## Space complexity: O(N)
-
 class Solution:
     def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:
         cache = {}
@@ -16,7 +15,6 @@ class Solution:
 ## Space optimization using a fixed-size set with a least recently seen eviction policy
 ## Time complexity: O(N)
 ## Space complexity: O(K)
-
 class Solution:
     def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:
         seen = set()
@@ -25,5 +23,5 @@ class Solution:
                 return True
             seen.add(num)
             if len(seen) > k:
-                seen.remove(nums[i-k])
+                seen.remove(nums[i - k])
         return False

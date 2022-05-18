@@ -3,14 +3,15 @@
 
 import heapq
 
+
 class Solution:
     def minMeetingRooms(self, intervals):
-        '''
+        """
         :type intervals: List[List[int]]
         :rtype: int
-        '''
+        """
         # Sort the meeting intervals by the starting time
-        intervals.sort(key = lambda x: x[0])
+        intervals.sort(key=lambda x: x[0])
         # Store the end time of meetings
         # Keep track of how many rooms are needed
         min_heap = []
