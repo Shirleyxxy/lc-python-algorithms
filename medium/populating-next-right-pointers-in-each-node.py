@@ -8,61 +8,66 @@ class Node:
         self.next = next
 """
 
-## Solution 1 - Level order traversal (BFS)
-## Time Complexity: O(N)
-## Space Complexity: O(N)
+## Solution 1 - level order traversal (BFS)
+## time complexity: O(N)
+## space complexity: O(N)
+
 
 class Solution:
     def connect(self, root):
-        '''
+        """
         :type root: Node
         :rtype: Node
-        '''
-        if not root: return root
+        """
+        if not root:
+            return root
+
         queue = collections.deque([root])
-        # Outer while loop which iterates over each level
+        # outer while loop which iterates over each level
         while queue:
-            prev_node, level_size = None, len(queue)
+            prev, level_size = None, len(queue)
             # the size of the queue always corresponds to
             # all the nodes on a particular level
             for _ in range(level_size):
-                curr_node = queue.popleft()
-                if prev_node:
-                    prev_node.next = curr_node
-                prev_node = curr_node
+                curr = queue.popleft()
+                if prev:
+                    prev.next = curr
+                prev = curr
 
-                if curr_node.left:
-                    queue.append(curr_node.left)
-                if curr_node.right:
-                    queue.append(curr_node.right)
+                if curr.left:
+                    queue.append(curr.left)
+                if curr.right:
+                    queue.append(curr.right)
+
         return root
 
 
-## Solution 2 - Using previously established next pointers
-## We establish the next pointers for a level N while we are still on level
-## N-1.
+## Solution 2 - pointers
+## time complexity: O(N)
+## space complexity: O(1)
 
-## Time Complexity: O(N)
-## Space Complexity: O(1)
+
 class Solution:
     def connect(self, root):
-        '''
+        """
         :type root: Node
         :rtype: Node
-        '''
-        if not root: return root
+        """
+        if not root:
+            return root
+
         leftmost = root
         # once we reach the final level, we are done
         while leftmost.left:
-            head = leftmost
-            while head:
+            curr = leftmost
+            while curr:
                 # connection 1
-                head.left.next = head.right
+                curr.left.next = curr.right
                 # connection 2
-                if head.next:
-                    head.right.next = head.next.left
+                if curr.next:
+                    curr.right.next = curr.next.left
                 # progress along the nodes on the current level
-                head = head.next
-            # Move onto the next level
+                curr = curr.next
+            # move onto the next level
             leftmost = leftmost.left
         return root

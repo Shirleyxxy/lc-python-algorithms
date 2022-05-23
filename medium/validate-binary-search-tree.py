@@ -6,7 +6,7 @@
 #         self.right = right
 
 
-## Solution 1 - Iterative using stack + inorder traversal
+## Solution 1 - iterative using stack + inorder traversal
 ## Idea: Left --> Node --> Right order of inorder traversal means for BST
 ## that each element should be smaller than the next one.
 ## Check lc94: Binary tree inorder traversal
@@ -14,10 +14,10 @@
 ## Space Complexity: O(N)
 class Solution:
     def isValidBST(self, root):
-        '''
+        """
         :type root: TreeNode
         :rtype: bool
-        '''
+        """
         stack, res = [(root, False)], []
         while stack:
             curr, visited = stack.pop()
@@ -33,22 +33,23 @@ class Solution:
         return True
 
 
-
-## Solution 2 - Stack (lower & upper limits)
-## Time Complexity: O(N)
-## Space Complexity: O(N)
+## Solution 2 - stack (lower & upper limits)
+## Time complexity: O(N)
+## Space complexity: O(N)
 class Solution:
     def isValidBST(self, root):
-        '''
+        """
         :type root: TreeNode
         :rtype: bool
-        '''
-        if not root: return True
+        """
+        if not root:
+            return True
 
-        stack = [(root, float('-inf'), float('inf'))]
+        stack = [(root, float("-inf"), float("inf"))]
         while stack:
             node, lower, upper = stack.pop()
-            if not node: continue
+            if not node:
+                continue
             val = node.val
             if val <= lower or val >= upper:
                 return False
@@ -57,23 +58,25 @@ class Solution:
         return True
 
 
-
-## Solution 3 - Recursion (easy to code)
-## Time Complexity: O(N) - we visit each node exactly once.
-## Space Complexity: O(N)
+## Solution 3 - recursion (easy to code)
+## Time complexity: O(N) - we visit each node exactly once.
+## Space complexity: O(N)
 class Solution:
     def isValidBST(self, root):
-        '''
+        """
         :type root: TreeNode
         :rtype: bool
-        '''
-        return self.isValidBSTFrom(root, float('-inf'), float('inf'))
+        """
+        return self.isValidBSTFrom(root, float("-inf"), float("inf"))
 
     def isValidBSTFrom(self, node, lo, hi):
-        if not node: return True
+        if not node:
+            return True
         if not lo < node.val < hi:
             return False
-        return self.isValidBSTFrom(node.left, lo, node.val) and self.isValidBSTFrom(node.right, node.val, hi)
+        return self.isValidBSTFrom(node.left, lo, node.val) and self.isValidBSTFrom(
+            node.right, node.val, hi
+        )
 
 
 ## Solution 4
@@ -82,7 +85,7 @@ class Solution:
 class Solution:
     def isValidBST(self, root):
         self.isBST = True
-        self.prev = float('-inf')
+        self.prev = float("-inf")
         self.inorder(root)
         return self.isBST
 

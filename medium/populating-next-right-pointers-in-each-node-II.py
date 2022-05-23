@@ -8,22 +8,26 @@ class Node:
         self.next = next
 """
 
-## Solution 1 - Level order traversal
-## Time Complexity: O(N)
-## Space Complexity: O(N)
+
+## Solution 1 - level order traversal, more straightforward
+## time complexity: O(N)
+## space complexity: O(N)
+
 from collections import deque
+
 
 class Solution:
     def connect(self, root):
-        '''
+        """
         :type root: Node
         :rtype: Node
-        '''
-        if not root: return root 
+        """
+        if not root:
+            return root
 
         queue = deque()
         queue.append(root)
-        # Outer while loop which iterates over each level
+        # outer while loop which iterates over each level
         while queue:
             prev_node, level_size = None, len(queue)
             # the size of the queue always corresponds to
@@ -41,41 +45,42 @@ class Solution:
         return root
 
 
-## Solution 2 - Using previously established next pointers
-## curr: variable we use to traverse all the nodes on the current level
-## prev: latest node on the next level
+## Solution 2 - pointers, more space optimized
+## time complexity: O(N)
+## space complexity: O(1)
 
-## Time Complexity: O(N)
-## Space Complexity: O(1)
+
 class Solution:
-    def process_child(self, child, prev, leftmost):
-        if child:
-            # already found at least one node on the next level
-            if prev:
-                prev.next = child
-            # this child node is the first node on the next level
-            else:
-                leftmost = child
-            prev = child
-        return prev, leftmost
-
     def connect(self, root):
-        '''
+        """
         :type root: Node
         :rtype: Node
-        '''
-        if not root: return root
-        leftmost = root
-        # we have no idea about the structure of the tree
-        # so we keep going until we find the last level.
-        # The nodes on the last level won't have any children.
-        while leftmost:
-            prev, curr = None, leftmost
-            # reset this so that we can re-assign it to the leftmost node of the next level
-            # also, if there isn't one, this would help break us out of the outmost loop
-            leftmost = None
-            while curr:
-                prev, leftmost = self.process_child(curr.left, prev, leftmost)
-                prev, leftmost = self.process_child(curr.right, prev, leftmost)
-                curr = curr.next
+        """
+        if not root:
+            return root
+
+        node = root
+
+        while node:
+            # create a dummy leftmost node for the next (child) level
+            dummy = Node(0)
+            curr = dummy
+            # while nodes exist on the parent level
+            while node:
+                if node.left:
+                    curr.next = node.left
+                    curr = curr.next
+                if node.right:
+                    curr.next = node.right
+                    curr = curr.next
+                node = node.next
+
+            # move to the next level
+            # at the beginning of each iteration of the outer loop
+            # curr and dummy both point at the same direction in memory
+
+            # thus, when curr.next is updated for the first time inside the inner loop
+            # dummy.next effectively points to the first node on the next level
+            node = dummy.next
+
         return root
