@@ -8,20 +8,20 @@ class Node:
         self.child = child
 """
 
-## Solution 1 - Preorder DFS using recursion
+## solution 1 - Preorder DFS using recursion
 ## (really hard to code)
 ## child: left pointer in binary tree
 ## next: right pointer in binary tree
 
-## Time Complexity: O(N) - DFS traverses each node once and only once
-## Space Complexity: O(N) in the worst case - nodes are chained with each other
+## time Complexity: O(N) - DFS traverses each node once and only once
+## space Complexity: O(N) in the worst case - nodes are chained with each other
 ## only with the child pointers
 class Solution:
     def flatten(self, head):
-        '''
+        """
         :type head: Node
         :rtype: Node
-        '''
+        """
         if not head:
             return head
         # use pseudo_head to ensure the prev pointer is never None
@@ -33,9 +33,9 @@ class Solution:
         return pseudo_head.next
 
     def flatten_dfs(self, prev, curr):
-        '''
+        """
         Return the tail of the flattened list.
-        '''
+        """
         if not curr:
             return prev
         curr.prev = prev
@@ -50,17 +50,17 @@ class Solution:
         return self.flatten_dfs(tail, temp_next)
 
 
-
-## Solution 2 - Preorder DFS using stack
-## Time Complexity: O(N)
-## Space Complexity: O(N) additional space
+## solution 2 - Preorder DFS using stack
+## time Complexity: O(N)
+## space Complexity: O(N) additional space
 class Solution:
     def flatten(self, head):
-        '''
+        """
         :type head: Node
         :rtype: Node
-        '''
-        if not head: return head
+        """
+        if not head:
+            return head
         stack, order = [head], []
 
         while stack:
@@ -73,25 +73,26 @@ class Solution:
             if curr.child:
                 stack.append(curr.child)
         # rebuild the doubly linked list from our order list
-        for i in range(len(order)-1):
-            order[i].next = order[i+1]
-            order[i+1].prev = order[i]
+        for i in range(len(order) - 1):
+            order[i].next = order[i + 1]
+            order[i + 1].prev = order[i]
             order[i].child = None
 
+        order[len(order) - 1].child = None
         return order[0]
 
 
-
-## Solution 3 - Preorder DFS using stack & Optimized space
-## Time Complexity: O(N)
-## Space Complexity: O(logN) on average, O(N) in the worst case
+## solution 3 - Preorder DFS using stack & optimized space
+## time complexity: O(N)
+## space complexity: O(logN) on average, O(N) in the worst case
 class Solution:
     def flatten(self, head):
-        '''
+        """
         :type head: Node
         :rtype: Node
-        '''
-        if not head: return head
+        """
+        if not head:
+            return head
         stack = [head]
         # dummy node
         prev = Node(0, None, None, None)

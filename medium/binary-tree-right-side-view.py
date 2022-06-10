@@ -1,5 +1,5 @@
-## Time Complexity: O(N)
-## Space Complexity: O(N)
+## time complexity: O(N)
+## space complexity: O(N)
 
 # Definition for a binary tree node.
 # class TreeNode:
@@ -8,27 +8,22 @@
 #         self.left = left
 #         self.right = right
 
-from collections import deque
 
 class Solution:
-    def rightSideView(self, root):
-        '''
-        :type root: TreeNode
-        :rtype: List[int]
-        '''
-        result = []
-        if not root: return result
-
-        queue = deque()
-        queue.append(root)
+    def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
+        if not root:
+            return []
+        res = []
+        queue = collections.deque([root])
         while queue:
             level_size = len(queue)
             for i in range(level_size):
-                curr_node = queue.popleft()
+                node = queue.popleft()
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+                # rightmost node on each level
                 if i == level_size - 1:
-                    result.append(curr_node.val)
-                if curr_node.left:
-                    queue.append(curr_node.left)
-                if curr_node.right:
-                    queue.append(curr_node.right)
-        return result
+                    res.append(node.val)
+        return res

@@ -1,26 +1,35 @@
-## Time Complexity: O(NlogK)
-## Space Complexity: O(N)
+## time complexity: O(NlogK)
+## space complexity: O(N)
 
 
 from heapq import *
+
 
 class Word:
     def __init__(self, freq, word):
         self.freq = freq
         self.word = word
 
+    def __eq__(self, other):
+        return self.freq == other.freq and self.word == other.word
+
     def __lt__(self, other):
+        """
+        1. frequency
+        2. lexicographical order
+        """
         if self.freq == other.freq:
             return self.word > other.word
         return self.freq < other.freq
 
+
 class Solution:
     def topKFrequent(self, words, k):
-        '''
+        """
         :type words: List[str]
         :type k: int
         :rtype: List[str]
-        '''
+        """
         word_freq = {}
         for word in words:
             word_freq[word] = word_freq.get(word, 0) + 1

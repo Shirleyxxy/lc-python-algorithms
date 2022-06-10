@@ -1,13 +1,14 @@
-## Time Complexity: O(N)
-## Space Complexity: O(N)
+## time complexity: O(N)
+## space complexity: O(N)
+
 
 class Solution:
     def removeDuplicates(self, s, k):
-        '''
+        """
         :type s: str
         :type k: int
         :rtype: str
-        '''
+        """
         stack = []
         for ch in s:
             if not stack or stack[-1][0] != ch:
@@ -21,4 +22,4 @@ class Solution:
                 if stack[-1][1] == k:
                     stack.pop()
         # build the result string using characters and counts in the stack
-        return ''.join(ch * cnt for ch, cnt in stack)
+        return "".join(ch * cnt for ch, cnt in stack)

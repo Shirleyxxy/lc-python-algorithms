@@ -1,25 +1,24 @@
-## Stack
-## Time Complexity: O(N)
-## Space Complexity: O(N)
+## stack
+## time complexity: O(N)
+## space complexity: O(N)
+
 
 class Solution:
     def decodeString(self, s):
-        '''
+        """
         :type s: str
         :rtype: str
-        '''
-        stack, curr_num, curr_str = [], 0, ''
+        """
+        stack, num, res = [], 0, ""
         for ch in s:
-            if ch == '[':
-                stack.append((curr_num, curr_str))
-                ## reset
-                curr_num, curr_str = 0, ''
-            ## start to decode the pattern
-            elif ch == ']':
-                num, prev_str = stack.pop()
-                curr_str = prev_str + num * curr_str
+            if ch.isalpha():
+                res += ch
             elif ch.isdigit():
-                curr_num = 10 * curr_num + int(ch)
+                num = 10 * num + int(ch)
+            elif ch == "[":
+                stack.append((num, res))
+                num, res = 0, ""  # reset
             else:
-                curr_str += ch
-        return curr_str
+                n, prev = stack.pop()
+                res = prev + n * res
+        return res
